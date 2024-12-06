@@ -43,6 +43,8 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
   }
 }
 
+// TODO: make this something that actually takes in an upload
+// - attempt to pass to a python file
 const FileUploader = () => {
   const pyodide = usePyodide();
   const [result, setResult] = useState<string | null>(null);
