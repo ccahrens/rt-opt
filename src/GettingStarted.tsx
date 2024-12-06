@@ -50,20 +50,22 @@ const FileUploader = () => {
   const [result, setResult] = useState<string | null>(null);
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!pyodide) {
-          alert("Pyodide is still loading. Please try again.");
-          return;
-      }
+    // TODO: figure out if other error checking needs to occur  
+    if (!pyodide) {
+        alert("Pyodide is still loading. Please try again.");
+        return;
+    }
+    // TODO: loading message of some kind: pyodide may take a while to load,
+    // so we should make the users aware of this
+    const file = event.target.files?.[0];
+    if (!file) return;
 
-      const file = event.target.files?.[0];
-      if (!file) return;
+    const reader = new FileReader();
+    // reader.onload = async () => {
+    //     const data = reader.result as string;
 
-      const reader = new FileReader();
-      // reader.onload = async () => {
-      //     const data = reader.result as string;
-
-      //     // Run Python script using Pyodide
-      //     const pythonScript = `
-      // }
+    //     // Run Python script using Pyodide
+    //     const pythonScript = `
+    // }
   }
 }
