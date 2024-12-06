@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Component, /*ChangeEvent, */MouseEvent } from 'react';
 import './App.css';
 import './index.css'
 import { App } from './App'
+import usePyodide from "./usePyodide";
 
 type GettingStartedState = {
   page: "home" | "about" | "todo" | "optimize" | "gettingstarted"
@@ -39,5 +40,28 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
 
   doBackClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
     this.props.onBackClick();
+  }
+}
+
+const FileUploader = () => {
+  const pyodide = usePyodide();
+  const [result, setResult] = useState<string | null>(null);
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!pyodide) {
+          alert("Pyodide is still loading. Please try again.");
+          return;
+      }
+
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      // reader.onload = async () => {
+      //     const data = reader.result as string;
+
+      //     // Run Python script using Pyodide
+      //     const pythonScript = `
+      // }
   }
 }
