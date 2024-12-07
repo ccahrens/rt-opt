@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// This code was generated with help from ChatGPT and other online resources.
 const usePyodide = () => {
     const [pyodide, setPyodide] = useState<any>(null);
 
