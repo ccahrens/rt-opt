@@ -6,10 +6,6 @@ import './index.css'
 import { ToDo } from './ToDo'
 import { AboutUs } from './AboutUs'
 import { GettingStarted } from './GettingStarted'
-//import 'react-native'
-//import { View, Text } from 'react-native'
-//import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 type AppState = {
   page: "home" | "about" | "todo" | "optimize" | "gettingstarted"
@@ -17,7 +13,6 @@ type AppState = {
 
 export class App extends Component<{}, AppState> {
   params : URLSearchParams = new URLSearchParams(window.location.search);
-  //Stack = createNativeStackNavigator();
   possiblePage = this.params.get("page");
   constructor(props: {}) {
     super(props);
@@ -42,21 +37,20 @@ export class App extends Component<{}, AppState> {
               <header className="App-header">
                   Welcome to the latest version of the Route Optimizer!
               </header>
-              <img src={test} className="App-logo" alt="logo" />
+              {/* <img src={test} className="App-logo" alt="logo" /> */}
               <p>Hey there friend!!</p>
               <p>We're a couple of college students trying to make route optimization easier.
                 We're working with the University District Food Bank in Seattle to deliver food to the people who need it most.
                 At some point, we'll try to publish our findings and make our code easily accessible by other foodbanks
-                around the country and beyond. For now, try clicking some of the buttons to learn more!
+                around the country and beyond. For now, navigate around our site to learn more about where we are now!
               </p>
-              <h2>What would you like to do?</h2>
               <button className="button" type="button"
-                  onClick={this.doAboutClick}>Learn more about us!</button>
+                  onClick={this.doAboutClick}>About</button>
               {/* <p></p> */}
               <button className="button" type="button"
-                  onClick={this.doToDoClick}>See our current todo list</button>
+                  onClick={this.doToDoClick}>Next Steps</button>
               <button className="button" type="button"
-                  onClick={this.doGettingStartedClick}>Learn how to use our software</button>
+                  onClick={this.doGettingStartedClick}>Getting Started</button>
               <p></p>
               <p></p>
             </div>
@@ -73,22 +67,6 @@ export class App extends Component<{}, AppState> {
     }
 
     return <div><p>How'd you end up here??</p></div>
-  }
-
-  home = (): JSX.Element => {
-    return(<div>
-      {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}> */}
-      <p>Home Screen</p>
-    {/* </View >*/}
-    </div>);
-  }
-
-  about = (): JSX.Element => {
-    return(<div>
-      {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}> */}
-      <p>About Screen</p>
-    {/* </View> */}
-    </div>);
   }
 
   doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
