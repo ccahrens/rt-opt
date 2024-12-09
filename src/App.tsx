@@ -63,7 +63,8 @@ export class App extends Component<{}, AppState> {
       return <ToDo onBackClick={this.doBackClick} />
     } else if (this.state.page == "gettingstarted") {
       this.params.set("page", "gettingstarted")
-      return <GettingStarted onBackClick={this.doBackClick} />
+      return <GettingStarted onBackClick={this.doBackClick}
+                              onAboutClick={this.doAboutClick} />
     }
 
     return <div><p>How'd you end up here??</p></div>

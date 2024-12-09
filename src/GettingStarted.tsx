@@ -11,6 +11,7 @@ type GettingStartedState = {
 
 type GettingStartedProps = {
   onBackClick: () => void;
+  onAboutClick: (_evt: MouseEvent<HTMLButtonElement>) => void;
 }
 
 
@@ -22,6 +23,9 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
 
   render = (): JSX.Element => {
     return (<div>
+      <p>
+      <button className="button" type="button" onClick={this.doBackClick}>Go home</button>
+      <button className="button" type="button" onClick={this.doAboutClick}>About us</button></p>
       <header className="App-header">Getting Started With Our Software</header>
       <h2>Overview</h2>
       <p>Using our software is quick, simple, and (mostly) easy. However, we'll need you to do a few things first.</p>
@@ -33,9 +37,6 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       <p>
         <a className="button" href="Downloads/TemplateSheet.xlsx" download="TemplateSheet.xlsx">Download Template</a>
       </p>
-      <p>
-      <button className="button" type="button" onClick={this.doBackClick}>Go home</button></p>
-      <p></p>
       <h2>Limitations</h2>
       <h3>Data Storage</h3>
       <p>
@@ -68,6 +69,10 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
 
   doBackClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
     this.props.onBackClick();
+  }
+
+  doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
+    this.props.onAboutClick(_evt);
   }
 }
 
