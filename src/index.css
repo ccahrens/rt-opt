@@ -15,6 +15,10 @@ h1 {
 h2 {
   color: mediumpurple;
 }
+h3 {
+  color: mediumorchid;
+  border-left-width: 4pt;
+}
 p {
   color: purple;
 }
