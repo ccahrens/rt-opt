@@ -94,11 +94,57 @@ const FileUploader = () => {
     if (!file) return;
 
     const reader = new FileReader();
-    // reader.onload = async () => {
-    //     const data = reader.result as string;
+    reader.onload = async () => {
+        const data = reader.result as string;
 
-    //     // Run Python script using Pyodide
-    //     const pythonScript = `
-    // }
+        // Run Python script using Pyodide
+        // const pythonScript = `
+    }
   }
+
+  const ModelParamsBuilderFunctionExecutor = () => {
+    const { pyodide, loadModelParamsBuilder } = usePyodide();
+    const [result, setResult] = useState<string | null>(null);
+
+    const handleRunFunction = async () => {
+        if (!pyodide) {
+            alert("Pyodide is still loading. Please try again.");
+            return;
+        }
+
+        try {
+            // Load the specific function from the notebook
+            await loadModelParamsBuilder(pyodide);
+
+            // Prepare input data
+            // this just garbage data
+            // when ready, update this to have real info
+            const inputData = [
+                { column1: 10, column2: 20 },
+                { column1: 30, column2: 40 }
+            ];
+
+            // Call the function with parameters
+            const output = await pyodide.runPythonAsync(`
+                from js import inputData
+                import json
+                result = process_data(json.loads(inputData))
+                result
+            `, { inputData: JSON.stringify(inputData) });
+
+            setResult(output);
+        } catch (error) {
+            console.error("Error running function:", error);
+            alert("An error occurred while running the function.");
+        }
+    };
+
+    return (
+        <div>
+            <h1>Run Specific Notebook Function</h1>
+            {/* <button onClick={handleRunFunction}>Run Function</button>
+            {result && <pre>{result}</pre>} */}
+        </div>
+    );
+};
 }
