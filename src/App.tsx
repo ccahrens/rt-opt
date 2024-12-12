@@ -37,16 +37,16 @@ export class App extends Component<{}, AppState> {
                   Route Optimizer
               </header>
               <nav>
-                <Link to="/" className="button-navigation">Home</Link>
-                <Link to="/about-us" className="button-navigation">About</Link>
-                <Link to="/next-steps" className="button-navigation">Next Steps</Link>
-                <Link to="/getting-started" className="button-navigation">Getting Started</Link>
+                <Link to="/rt-opt" className="button-navigation">Home</Link>
+                <Link to="/rt-opt/about-us" className="button-navigation">About</Link>
+                <Link to="/rt-opt/next-steps" className="button-navigation">Next Steps</Link>
+                <Link to="/rt-opt/getting-started" className="button-navigation">Getting Started</Link>
               </nav>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about-us" element={<AboutUs/>} />
-                <Route path="/next-steps" element={<ToDo/>} />
-                <Route path="/getting-started" element={<GettingStarted/>} />
+                <Route path="/rt-opt" element={<Home />} />
+                <Route path="/rt-opt/about-us" element={<AboutUs/>} />
+                <Route path="/rt-opt/next-steps" element={<ToDo/>} />
+                <Route path="/rt-opt/getting-started" element={<GettingStarted/>} />
               </Routes>
               <p></p>
               <p></p>
