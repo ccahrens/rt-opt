@@ -34,8 +34,8 @@ export class AboutUs extends Component<AboutUsProps, AboutUsState> {
       <p className="App-text">By the end of the quarter, we had made progress, but we knew we could do more.</p>
       
       <p className="App-text">We decided to continue the project to make as big of a difference as possible. Along the way, we have learned more about Python,
-      Gurobi, route optimization, mathematical modeling, and so much more. We worked with <a href="https://sites.math.washington.edu//~billey/">Professor Sara Billey</a> 
-      throughout the year to make this project come to fruition and cannot thank her enough for her contributions.</p>
+      Gurobi, route optimization, mathematical modeling, and so much more. We worked with <a href="https://sites.math.washington.edu//~billey/">Professor Sara Billey</a> throughout 
+      the year to make this project come to fruition and cannot thank her enough for her contributions.</p>
       {/* <button className="button" type="button" onClick={this.doBackClick}>Go home</button> */}
       <p></p></div>);
   }
