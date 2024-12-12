@@ -132,6 +132,8 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
                 <pre>{this.state.uploadResult}</pre>
               </div>
             )}
+            <h3>Step 3: Optimize!</h3>
+            <p>Unfortunately, this functionality is not yet supported. Check back soon to see if we've released an update!</p>
       </p>
       <h2>Limitations</h2>
       <p className="increased-indentation">
