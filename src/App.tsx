@@ -47,6 +47,7 @@ export class App extends Component<{}, AppState> {
                 <Route path="/rt-opt/about-us" element={<AboutUs/>} />
                 <Route path="/rt-opt/next-steps" element={<ToDo/>} />
                 <Route path="/rt-opt/getting-started" element={<GettingStarted/>} />
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
               <p></p>
               <p></p>
