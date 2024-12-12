@@ -12,21 +12,21 @@ type AppState = {
 }
 
 export class App extends Component<{}, AppState> {
-  params : URLSearchParams = new URLSearchParams(window.location.search);
-  possiblePage = this.params.get("page");
+  // params : URLSearchParams = new URLSearchParams(window.location.search);
+  // possiblePage = this.params.get("page");
   constructor(props: {}) {
     super(props);
-    if (this.possiblePage === undefined || this.possiblePage === null) {
-      this.state = {page: "home"};
-    } else if (this.possiblePage === "about") {
-      this.state = {page: "about"};
-    } else if (this.possiblePage === "todo") {
-      this.state = {page: "todo"};
-    } else if (this.possiblePage === "optimize") {
-      this.state = {page: "optimize"};
-    } else {
-      this.state = {page: "home"}
-    }
+    // if (this.possiblePage === undefined || this.possiblePage === null) {
+    //   this.state = {page: "home"};
+    // } else if (this.possiblePage === "about") {
+    //   this.state = {page: "about"};
+    // } else if (this.possiblePage === "todo") {
+    //   this.state = {page: "todo"};
+    // } else if (this.possiblePage === "optimize") {
+    //   this.state = {page: "optimize"};
+    // } else {
+    //   this.state = {page: "home"}
+    // }
   }
 
   render = (): JSX.Element => {
@@ -55,24 +55,24 @@ export class App extends Component<{}, AppState> {
           );
   }
 
-  doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
-    this.params.set("page", "about")
-    this.setState({page: "about"})
-    return;
-  }
+  // doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
+  //   this.params.set("page", "about")
+  //   this.setState({page: "about"})
+  //   return;
+  // }
 
-  doToDoClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
-    this.params.set("page", "todo")
-    this.setState({page: "todo"})
-  }
+  // doToDoClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
+  //   this.params.set("page", "todo")
+  //   this.setState({page: "todo"})
+  // }
 
-  doBackClick = (): void => {
-    this.setState({page: "home"});
-  }
+  // doBackClick = (): void => {
+  //   this.setState({page: "home"});
+  // }
 
-  doGettingStartedClick = (): void => {
-    this.setState({page: "gettingstarted"});
-  }
+  // doGettingStartedClick = (): void => {
+  //   this.setState({page: "gettingstarted"});
+  // }
 
 }
 
