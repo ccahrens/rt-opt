@@ -30,13 +30,13 @@
   transition-duration: 0.4s;
 }
 
-.App-header:hover {
+/* .App-header:hover {
   /* color: rgb(34, 7, 242); */
-  color: mediumpurple;
+  /* color: mediumpurple;
   font-size: calc(11px + 2vmin);
-  font-weight: 800;
+  font-weight: 800; */
   /* text-decoration: underline; */
-}
+/* }  */
 
 .App-content-header {
   text-align: left;
