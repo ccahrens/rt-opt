@@ -77,8 +77,9 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       <p></p>
       <p></p>
       <p>
-      <button className="button-navigation" type="button" onClick={this.doBackClick}>Go home</button>
-      <button className="button-navigation" type="button" onClick={this.doAboutClick}>About us</button></p>
+        <button className="button-navigation" type="button" onClick={this.doBackClick}>Go home</button>
+        <button className="button-navigation" type="button" onClick={this.doAboutClick}>About us</button>
+      </p>
       <header className="App-header">Getting Started With Our Software</header>
       <h2>Overview</h2>
       <p>Using our software is quick, simple, and (mostly) easy. However, we'll need you to do a few things first.</p>
@@ -98,7 +99,7 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       <p className="increased-indentation">
             <h3>Step 1: Download the template</h3>
             <p>
-              <a className="button" href="Downloads/TemplateSheet.xlsx" download="TemplateSheet.xlsx">Download Template</a>
+              <a className="button-download" href="Downloads/TemplateSheet.xlsx" download="TemplateSheet.xlsx">Download Template</a>
             </p>
             <h3>Step 2: Upload your spreadsheet</h3>
             <p>
@@ -112,6 +113,7 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
             )}
       </p>
       <h2>Limitations</h2>
+      <p className="increased-indentation">
       <h3>Data Storage</h3>
       <p>
         As part of our goal is to keep this software free for food banks around Washington State to use, there are a 
@@ -137,6 +139,7 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       <p>We're currently still in the development process. We hope to have something that works generally within the next few weeks!</p>
       <h3>What if I have questions?</h3>
       <p>Contact us! We'll add our contact information shortly.</p>
+      </p>
       <p></p>
       <p></p>
       </div>);

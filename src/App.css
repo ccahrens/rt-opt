@@ -1,8 +1,8 @@
 .App {
   text-align: center;
-  margin: 50px 50px 50px 50px;
+  margin: 50px;
   font-family: Garamond, serif;
-  padding: 10px
+  padding: 50px
 }
 
 .App-logo {
@@ -40,6 +40,7 @@
 /* }  */
 
 .App-content-header {
+  margin: 50px;
   text-align: left;
   font-weight: bold;
   display: flex;
@@ -53,6 +54,7 @@
 .App-text {
   text-align: left;
   align-items: left;
+  margin: 50px;
   line-height: 20px;
   justify-content: left;
   font-size: calc(2px + 2vmin);
@@ -72,7 +74,22 @@ input::file-selector-button {
   display: inline-block;
   font-size: 16px;
   transition-duration: 0.4s;
-  margin: 20px
+  margin: 0px
+}
+
+.button-download {
+  background-color: darkslateblue;
+  font-family: Garamond, serif;
+  border: 1px solid rgb(34, 7, 242);
+  border-radius: 8px;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  margin: 0px
 }
 
 p {
@@ -98,27 +115,29 @@ p {
   display: inline-block;
   font-size: 16px;
   transition-duration: 0.4s;
-  margin: 10px
+  margin: 20px
 }
 
 .increase-indent {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .button-navigation {
-  background-color: darkslateblue;
+  background-color: rgb(216, 191, 216);
   font-family: Garamond, serif;
-  border: 1px solid rgb(34, 7, 242);
+  border: 1px solid rgb(48, 39, 116);
   align-items: center;
+  align-self: center;
+  align-content: center;
   border-radius: 8px;
-  color: white;
-  padding: 5px 5px;
+  color: rgb(48, 39, 116);
+  padding: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   transition-duration: 0.4s;
-  margin: 10px
+  margin: 5px
 }
 
 .button:hover {
@@ -126,6 +145,13 @@ p {
   border: 1px solid rgb(34, 7, 242);
   padding: 12px 24px;
   color: white;
+}
+
+.button-navigation:hover {
+  background-color: rgb(216, 191, 216);
+  border: 1px solid rgb(48, 39, 116);
+  padding: 8px 8px;
+  color: rgb(48, 39, 116);
 }
 
 @keyframes App-logo-spin {

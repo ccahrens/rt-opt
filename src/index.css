@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 80;
   background-color: rgb(216, 191, 216);
   font-family: Garamond, serif;
   -webkit-font-smoothing: antialiased;
@@ -11,14 +11,18 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 1.6em;
 }
 h2 {
-  color: mediumpurple;
+  color: mediumslateblue;
+  font-size: 1.3em;
 }
 h3 {
-  color: mediumorchid;
+  color: mediumpurple;
   border-left-width: 4pt;
+  font-size: 1.1em;
 }
+
 p {
   color: purple;
 }
