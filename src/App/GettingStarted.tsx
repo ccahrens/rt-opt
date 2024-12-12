@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Component, ChangeEvent, MouseEvent } from 'react';
-import './App.css';
-import './index.css'
+import './css/App.css';
+import './css/index.css'
 import { App } from './App'
-import usePyodide from "./usePyodide";
+import usePyodide from "../pythonFiles/usePyodide";
 
 // const { pyodide, loadModelParamsBuilder } = usePyodide();
 //     const [result, setResult] = useState<string | null>(null);
@@ -79,7 +79,7 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
 
         // Run Python script using Pyodide
         // This is not finished:
-        //    - current pythongScript is just filler things
+        //    - current pythonScript is just filler things
         const pythonScript = `
           import pandas as pd
           from io import { StringifyOptions
@@ -223,3 +223,16 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
         </div>
     );
 };
+
+
+
+/*
+* TODO
+* - Need to get Nelson's MRS added to the client side
+* - Figure out how to allow client to generate ajacency matrix -> they will probably
+*   need to upload a list of the addresses FIRST
+*   - How to get Cin's docker stuff on here??
+* - MPB needs to be in the folder, but it doesn't need to be called by GettingStarted
+* - Cin's docker/ajacency matrix stuff does need to be called, as does Nelson's MRS
+* - Bag constraints need to be passed to MRS??
+*/

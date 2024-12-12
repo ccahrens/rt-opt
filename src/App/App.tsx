@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from "react-router-dom";
 import { Component, /*ChangeEvent, */MouseEvent } from 'react';
-import './App.css';
-import './index.css'
+import './css/App.css';
+import './css/index.css'
 import { ToDo } from './ToDo'
 import { AboutUs } from './AboutUs'
 import { GettingStarted } from './GettingStarted'

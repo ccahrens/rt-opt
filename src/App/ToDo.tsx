@@ -1,8 +1,7 @@
 import React from 'react';
 import { Component, /*ChangeEvent, */MouseEvent } from 'react';
-import './App.css';
-import test from './img.png'
-import './index.css'
+import './css/App.css';
+import './css/index.css'
 import { App } from './App'
 
 type ToDoState = {}
