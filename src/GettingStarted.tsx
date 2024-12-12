@@ -31,8 +31,18 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
   }
 
   async componentDidMount() {
-    this.pyodide = await (window as any).loadPyodide();
-    this.setState({ pyodideLoaded: true });
+    try {
+      const loadPyodide = (window as any).loadPyodide;
+      if (typeof loadPyodide !== "function") {
+        throw new Error("Pyodide is not loaded.");
+      }
+      // this.pyodide = await (window as any).loadPyodide();
+      this.pyodide = await loadPyodide();
+      this.setState({ pyodideLoaded: true });
+    } catch {
+      console.error("Error loading Pyodide:", Error);
+      alert("Failed to load Pyodide. Please refesh page or try again later.")
+    }
   }
 
   handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
