@@ -1,7 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from "react-router-dom";
 import { Component, /*ChangeEvent, */MouseEvent } from 'react';
 import './App.css';
-import test from './img.png'
 import './index.css'
 import { ToDo } from './ToDo'
 import { AboutUs } from './AboutUs'
@@ -30,44 +30,29 @@ export class App extends Component<{}, AppState> {
   }
 
   render = (): JSX.Element => {
-    if (this.state.page == "home") {
-      this.params.set("page", "home");
       return (
+        <Router>
             <div className="App">
               <header className="App-header">
-                  Welcome to the latest version of the Route Optimizer!
+                  Route Optimizer
               </header>
-              {/* <img src={test} className="App-logo" alt="logo" /> */}
-              <p>Hey there friend!!</p>
-              <p>We're a couple of college students trying to make route optimization easier.
-                We're working with the University District Food Bank in Seattle to deliver food to the people who need it most.
-                At some point, we'll try to publish our findings and make our code easily accessible by other foodbanks
-                around the country and beyond. For now, navigate around our site to learn more about where we are now!
-              </p>
-              <button className="button" type="button"
-                  onClick={this.doAboutClick}>About</button>
-              {/* <p></p> */}
-              <button className="button" type="button"
-                  onClick={this.doToDoClick}>Next Steps</button>
-              <button className="button" type="button"
-                  onClick={this.doGettingStartedClick}>Getting Started</button>
+              <nav>
+                <Link to="/" className="button-navigation">Home</Link>
+                <Link to="/about-us" className="button-navigation">About</Link>
+                <Link to="/next-steps" className="button-navigation">Next Steps</Link>
+                <Link to="/getting-started" className="button-navigation">Getting Started</Link>
+              </nav>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about-us" element={<AboutUs/>} />
+                <Route path="/next-steps" element={<ToDo/>} />
+                <Route path="/getting-started" element={<GettingStarted/>} />
+              </Routes>
               <p></p>
               <p></p>
             </div>
+          </Router>
           );
-    } else if (this.state.page == "about") {
-      this.params.set("page", "about")
-      return <AboutUs onBackClick={this.doBackClick} />
-    } else if (this.state.page == "todo") {
-      this.params.set("page", "todo")
-      return <ToDo onBackClick={this.doBackClick} />
-    } else if (this.state.page == "gettingstarted") {
-      this.params.set("page", "gettingstarted")
-      return <GettingStarted onBackClick={this.doBackClick}
-                              onAboutClick={this.doAboutClick} />
-    }
-
-    return <div><p>How'd you end up here??</p></div>
   }
 
   doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
@@ -91,17 +76,14 @@ export class App extends Component<{}, AppState> {
 
 }
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <p>
-//           Welcome to the latest version of the Route Optimizer!
-//         </p>
-//         <img src={test} className="App-logo" alt="logo" />
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
+const Home = (): JSX.Element => (
+  <div>
+    <p>Hey there friend!!</p>
+    <p>
+      We're a couple of college students trying to make route optimization easier.
+      We're working with the University District Food Bank in Seattle to deliver food to the people who need it most.
+      At some point, we'll try to publish our findings and make our code easily accessible by other foodbanks
+      around the country and beyond. For now, navigate around our site to learn more about where we are now!
+    </p>
+  </div>
+);

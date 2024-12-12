@@ -12,8 +12,8 @@ type GettingStartedState = {
 }
 
 type GettingStartedProps = {
-  onBackClick: () => void;
-  onAboutClick: (_evt: MouseEvent<HTMLButtonElement>) => void;
+  // onBackClick: () => void;
+  // onAboutClick: (_evt: MouseEvent<HTMLButtonElement>) => void;
 }
 
 
@@ -37,6 +37,7 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
         throw new Error("Pyodide is not loaded.");
       }
       // this.pyodide = await (window as any).loadPyodide();
+      console.log(loadPyodide);
       this.pyodide = await loadPyodide();
       this.setState({ pyodideLoaded: true });
     } catch {
@@ -84,12 +85,6 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
 
   render = (): JSX.Element => {
     return (<div>
-      <p></p>
-      <p></p>
-      <p>
-        <button className="button-navigation" type="button" onClick={this.doBackClick}>Go home</button>
-        <button className="button-navigation" type="button" onClick={this.doAboutClick}>About us</button>
-      </p>
       <header className="App-header">Getting Started With Our Software</header>
       <h2>Overview</h2>
       <p>Using our software is quick, simple, and (mostly) easy. However, we'll need you to do a few things first.</p>
@@ -156,13 +151,13 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
   }
 
 
-  doBackClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
-    this.props.onBackClick();
-  }
+  // doBackClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
+  //   this.props.onBackClick();
+  // }
 
-  doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
-    this.props.onAboutClick(_evt);
-  }
+  // doAboutClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
+  //   this.props.onAboutClick(_evt);
+  // }
 }
 
   const ModelParamsBuilderFunctionExecutor = () => {

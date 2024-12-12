@@ -1,8 +1,9 @@
 .App {
   text-align: center;
-  margin: 50px;
+  margin: 10px;
+  margin-top: 20px;
   font-family: Garamond, serif;
-  padding: 50px
+  padding: 20px
 }
 
 .App-logo {
@@ -18,7 +19,7 @@
 
 .App-header {
   background-color: rgb(216, 191, 216);
-  margin: 50px;
+  margin: 20px;
   text-align: center;
   font-weight: bold;
   line-height: 50px;
@@ -40,7 +41,7 @@
 /* }  */
 
 .App-content-header {
-  margin: 50px;
+  margin: 10px;
   text-align: left;
   font-weight: bold;
   display: flex;

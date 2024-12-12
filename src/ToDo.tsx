@@ -9,9 +9,7 @@ type ToDoState = {
   page: "home" | "about" | "todo" | "optimize"
 }
 
-type ToDoProps = {
-  onBackClick: () => void;
-}
+type ToDoProps = {}
 
 
 export class ToDo extends Component<ToDoProps, ToDoState> {
@@ -23,17 +21,13 @@ export class ToDo extends Component<ToDoProps, ToDoState> {
   render = (): JSX.Element => {
     return (<div>
       <header className="App-header">TODO LIST</header>
+      <p>
       <ul>
         <li>Finish up our pitch!</li>
         <li>Create an executable to run our program easily and simply</li>
         <li>Create a tutorial on how to use our software</li>
       </ul>
-      <button className="button" type="button" onClick={this.doBackClick}>Go home</button>
+      </p>
       <p></p></div>);
-  }
-
-
-  doBackClick = (_evt: MouseEvent<HTMLButtonElement>): void => {
-    this.props.onBackClick();
   }
 }
