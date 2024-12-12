@@ -99,7 +99,7 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       </p>
       <h3>Step 2: Upload your spreadsheet</h3>
       <p>
-      <input type="file" className="button" onChange={this.handleFileUpload} />
+      <input type="file" onChange={this.handleFileUpload} />
       </p>
       {this.state.uploadResult && (
         <div>

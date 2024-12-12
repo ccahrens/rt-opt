@@ -59,6 +59,21 @@
   text-wrap: wrap;
 }
 
+input::file-selector-button {
+  background-color: darkslateblue;
+  font-family: Garamond, serif;
+  border: 1px solid rgb(34, 7, 242);
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  margin: 10px
+}
+
 p {
   text-wrap: wrap;
   color: rgb(40, 35, 71);
