@@ -101,6 +101,26 @@ p {
   margin: 10px
 }
 
+.increase-indent {
+  margin-left: 20px;
+}
+
+.button-navigation {
+  background-color: darkslateblue;
+  font-family: Garamond, serif;
+  border: 1px solid rgb(34, 7, 242);
+  align-items: center;
+  border-radius: 8px;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  margin: 10px
+}
+
 .button:hover {
   background-color: rgb(75, 51, 227);
   border: 1px solid rgb(34, 7, 242);

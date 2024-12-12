@@ -51,6 +51,8 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
         const data = reader.result as string;
 
         // Run Python script using Pyodide
+        // This is not finished:
+        //    - current pythongScript is just filler things
         const pythonScript = `
           import pandas as pd
           from io import { StringifyOptions
@@ -75,8 +77,8 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       <p></p>
       <p></p>
       <p>
-      <button className="button" type="button" onClick={this.doBackClick}>Go home</button>
-      <button className="button" type="button" onClick={this.doAboutClick}>About us</button></p>
+      <button className="button-navigation" type="button" onClick={this.doBackClick}>Go home</button>
+      <button className="button-navigation" type="button" onClick={this.doAboutClick}>About us</button></p>
       <header className="App-header">Getting Started With Our Software</header>
       <h2>Overview</h2>
       <p>Using our software is quick, simple, and (mostly) easy. However, we'll need you to do a few things first.</p>
@@ -93,20 +95,22 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
         Once you've uploaded your routes, we'll try to provide a result. This is in the very early stages of beta testing, so not everything will work 
         perfectly on the first go! If there's an issue, rest assured that we're trying to get a patch working soon :)
       </p>
-      <h3>Step 1: Download the template</h3>
-      <p>
-        <a className="button" href="Downloads/TemplateSheet.xlsx" download="TemplateSheet.xlsx">Download Template</a>
+      <p className="increased-indentation">
+            <h3>Step 1: Download the template</h3>
+            <p>
+              <a className="button" href="Downloads/TemplateSheet.xlsx" download="TemplateSheet.xlsx">Download Template</a>
+            </p>
+            <h3>Step 2: Upload your spreadsheet</h3>
+            <p>
+            <input type="file" onChange={this.handleFileUpload} />
+            </p>
+            {this.state.uploadResult && (
+              <div>
+                <h4>Processing Result:</h4>
+                <pre>{this.state.uploadResult}</pre>
+              </div>
+            )}
       </p>
-      <h3>Step 2: Upload your spreadsheet</h3>
-      <p>
-      <input type="file" onChange={this.handleFileUpload} />
-      </p>
-      {this.state.uploadResult && (
-        <div>
-          <h4>Processing Result:</h4>
-          <pre>{this.state.uploadResult}</pre>
-        </div>
-      )}
       <h2>Limitations</h2>
       <h3>Data Storage</h3>
       <p>
@@ -147,41 +151,6 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
     this.props.onAboutClick(_evt);
   }
 }
-
-// TODO: make this something that actually takes in an upload
-// - attempt to pass to a python file
-const FileUploader = () => {
-  const pyodide = usePyodide();
-  const [result, setResult] = useState<string | null>(null);
-
-  // const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   // TODO: figure out if other error checking needs to occur  
-  //   if (!pyodide) {
-  //       alert("Pyodide is still loading. Please try again.");
-  //       return;
-  //   }
-  //   // TODO: loading message of some kind: pyodide may take a while to load,
-  //   // so we should make the users aware of this
-  //   const file = event.target.files?.[0];
-  //   if (!file) return;
-
-  //   const reader = new FileReader();
-  //   reader.onload = async () => {
-  //       const data = reader.result as string;
-
-  //       // Run Python script using Pyodide
-  //       const pythonScript = `
-  //         import pandas as pd
-  //         from io import { StringifyOptions
-  //         data = StringIO(${JSON.stringify(data)})
-  //         df = pd.read_csv(data)
-  //         output = df.describe().to_json()
-  //         output `;
-  //         try {
-  //           const output = await this.pyodide.runPythonAsync(pythonScript);
-  //         }
-    // }
-  }
 
   const ModelParamsBuilderFunctionExecutor = () => {
     const { pyodide, loadModelParamsBuilder } = usePyodide();
