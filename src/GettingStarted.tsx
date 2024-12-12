@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Component, /*ChangeEvent, */MouseEvent } from 'react';
+import { Component, ChangeEvent, MouseEvent } from 'react';
 import './App.css';
 import './index.css'
 import { App } from './App'
@@ -7,6 +7,8 @@ import usePyodide from "./usePyodide";
 
 type GettingStartedState = {
   page: "home" | "about" | "todo" | "optimize" | "gettingstarted"
+  pyodideLoaded: boolean;
+  uploadResult: string | null;
 }
 
 type GettingStartedProps = {
@@ -16,13 +18,62 @@ type GettingStartedProps = {
 
 
 export class GettingStarted extends Component<GettingStartedProps, GettingStartedState> {
+  pyodide: any;
+
   constructor(props: GettingStartedProps) {
     super(props);
-    this.state = {page: "gettingstarted"}
+    this.state = {
+      page: "gettingstarted",
+      pyodideLoaded: false,
+      uploadResult: null,
+    };
+    this.pyodide = null;
   }
+
+  async componentDidMount() {
+    this.pyodide = await (window as any).loadPyodide();
+    this.setState({ pyodideLoaded: true });
+  }
+
+  handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    // TODO: figure out if other error checking needs to occur  
+    if (!this.pyodide) {
+        alert("Pyodide is still loading. Please try again.");
+        return;
+    }
+    // TODO: loading message of some kind: pyodide may take a while to load,
+    // so we should make the users aware of this
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async () => {
+        const data = reader.result as string;
+
+        // Run Python script using Pyodide
+        const pythonScript = `
+          import pandas as pd
+          from io import { StringifyOptions
+          data = StringIO(${JSON.stringify(data)})
+          df = pd.read_csv(data)
+          output = df.describe().to_json()
+          output `;
+          try {
+            const output = await this.pyodide.runPythonAsync(pythonScript);
+            this.setState({ uploadResult: output });
+          } catch (error) {
+            console.error("Error processing file:", error);
+            alert("An error occurred while processing the file.");
+          }
+        };
+
+        reader.readAsText(file);
+      }
 
   render = (): JSX.Element => {
     return (<div>
+      <p></p>
+      <p></p>
       <p>
       <button className="button" type="button" onClick={this.doBackClick}>Go home</button>
       <button className="button" type="button" onClick={this.doAboutClick}>About us</button></p>
@@ -34,9 +85,28 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
         You can even specify bike routes! To get started on all of this, please download the template spreadsheet and adjust values according to your needs. 
         The template spreadsheet, which you can download below, includes examples of what to add to the form.
       </p>
+      <p>After that, you'll then have to upload your spreadsheet to the website. Optimization can take a bit, so hang tight and 
+        don't close your computer or the tab! 
+        If you do, you might have to start over, since we can't save your data due to limitations on free resources.
+      </p>
+      <p>
+        Once you've uploaded your routes, we'll try to provide a result. This is in the very early stages of beta testing, so not everything will work 
+        perfectly on the first go! If there's an issue, rest assured that we're trying to get a patch working soon :)
+      </p>
+      <h3>Step 1: Download the template</h3>
       <p>
         <a className="button" href="Downloads/TemplateSheet.xlsx" download="TemplateSheet.xlsx">Download Template</a>
       </p>
+      <h3>Step 2: Upload your spreadsheet</h3>
+      <p>
+      <input type="file" onChange={this.handleFileUpload} />
+      </p>
+      {this.state.uploadResult && (
+        <div>
+          <h4>Processing Result:</h4>
+          <pre>{this.state.uploadResult}</pre>
+        </div>
+      )}
       <h2>Limitations</h2>
       <h3>Data Storage</h3>
       <p>
@@ -63,6 +133,8 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
       <p>We're currently still in the development process. We hope to have something that works generally within the next few weeks!</p>
       <h3>What if I have questions?</h3>
       <p>Contact us! We'll add our contact information shortly.</p>
+      <p></p>
+      <p></p>
       </div>);
   }
 
@@ -82,24 +154,33 @@ const FileUploader = () => {
   const pyodide = usePyodide();
   const [result, setResult] = useState<string | null>(null);
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    // TODO: figure out if other error checking needs to occur  
-    if (!pyodide) {
-        alert("Pyodide is still loading. Please try again.");
-        return;
-    }
-    // TODO: loading message of some kind: pyodide may take a while to load,
-    // so we should make the users aware of this
-    const file = event.target.files?.[0];
-    if (!file) return;
+  // const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   // TODO: figure out if other error checking needs to occur  
+  //   if (!pyodide) {
+  //       alert("Pyodide is still loading. Please try again.");
+  //       return;
+  //   }
+  //   // TODO: loading message of some kind: pyodide may take a while to load,
+  //   // so we should make the users aware of this
+  //   const file = event.target.files?.[0];
+  //   if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = async () => {
-        const data = reader.result as string;
+  //   const reader = new FileReader();
+  //   reader.onload = async () => {
+  //       const data = reader.result as string;
 
-        // Run Python script using Pyodide
-        // const pythonScript = `
-    }
+  //       // Run Python script using Pyodide
+  //       const pythonScript = `
+  //         import pandas as pd
+  //         from io import { StringifyOptions
+  //         data = StringIO(${JSON.stringify(data)})
+  //         df = pd.read_csv(data)
+  //         output = df.describe().to_json()
+  //         output `;
+  //         try {
+  //           const output = await this.pyodide.runPythonAsync(pythonScript);
+  //         }
+    // }
   }
 
   const ModelParamsBuilderFunctionExecutor = () => {
@@ -141,10 +222,9 @@ const FileUploader = () => {
 
     return (
         <div>
-            <h1>Run Specific Notebook Function</h1>
-            {/* <button onClick={handleRunFunction}>Run Function</button>
-            {result && <pre>{result}</pre>} */}
+            <h1>Try out optimization:</h1>
+            <button onClick={handleRunFunction}>Go!</button>
+            {result && <pre>{result}</pre>}
         </div>
     );
 };
-}
