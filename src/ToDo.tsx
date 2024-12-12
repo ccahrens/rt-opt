@@ -5,9 +5,7 @@ import test from './img.png'
 import './index.css'
 import { App } from './App'
 
-type ToDoState = {
-  page: "home" | "about" | "todo" | "optimize"
-}
+type ToDoState = {}
 
 type ToDoProps = {}
 
@@ -15,7 +13,6 @@ type ToDoProps = {}
 export class ToDo extends Component<ToDoProps, ToDoState> {
   constructor(props: ToDoProps) {
     super(props);
-    this.state = {page: "home"}
   }
 
   render = (): JSX.Element => {

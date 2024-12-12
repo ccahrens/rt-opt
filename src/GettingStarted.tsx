@@ -5,6 +5,9 @@ import './index.css'
 import { App } from './App'
 import usePyodide from "./usePyodide";
 
+// const { pyodide, loadModelParamsBuilder } = usePyodide();
+//     const [result, setResult] = useState<string | null>(null);
+
 type GettingStartedState = {
   page: "home" | "about" | "todo" | "optimize" | "gettingstarted"
   pyodideLoaded: boolean;
@@ -31,34 +34,47 @@ export class GettingStarted extends Component<GettingStartedProps, GettingStarte
   }
 
   async componentDidMount() {
+    // figure out how to use this correctly
+    // this.pyodide = await (window as any).loadPyodide();
+    // this.setState({ pyodideLoaded: true });
+    // const { pyodide, loadModelParamsBuilder } = usePyodide();
+    // const [result, setResult] = useState<string | null>(null);
+    // usePyodide();
+    // await loadModelParamsBuilder(this.pyodide);
     try {
       const loadPyodide = (window as any).loadPyodide;
       if (typeof loadPyodide !== "function") {
-        throw new Error("Pyodide is not loaded.");
+        throw new Error("Pyodide has not loaded.");
       }
       // this.pyodide = await (window as any).loadPyodide();
       console.log(loadPyodide);
       this.pyodide = await loadPyodide();
+      console.log("setting pyodideLoaded to true");
       this.setState({ pyodideLoaded: true });
     } catch {
       console.error("Error loading Pyodide:", Error);
-      alert("Failed to load Pyodide. Please refesh page or try again later.")
+      // alert("Failed to load Pyodide. Please refesh page or try again later.")
     }
   }
 
   handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     // TODO: figure out if other error checking needs to occur  
+    console.log("very top of handleFileUpload");
     if (!this.pyodide) {
-        alert("Pyodide is still loading. Please try again.");
+        alert("Pyodide, which is needed to process your file, is still loading. Please try again in a few seconds.");
         return;
     }
+    console.log("in handleFileUpload");
     // TODO: loading message of some kind: pyodide may take a while to load,
     // so we should make the users aware of this
     const file = event.target.files?.[0];
     if (!file) return;
+    console.log("made it past check file");
 
+    console.log("here!");
     const reader = new FileReader();
     reader.onload = async () => {
+        console.log("in async reader.onload function");
         const data = reader.result as string;
 
         // Run Python script using Pyodide
